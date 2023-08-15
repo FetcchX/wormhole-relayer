@@ -1,0 +1,26 @@
+{
+  "name": "wormhole-relayer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/elliptic": "^6.4.14",
+    "@types/node": "^20.5.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@certusone/wormhole-sdk-proto-web": "^0.0.6",
+    "@certusone/wormhole-spydk": "^0.0.1",
+    "@grpc/grpc-js": "^1.9.0",
+    "@improbable-eng/grpc-web-node-http-transport": "^0.15.0",
+    "binary-parser": "^2.2.1",
+    "ethers": "5.7.2",
+    "elliptic": "^6.5.4"
+  }
+}
