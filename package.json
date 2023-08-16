@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --outDir dist -d",
+    "redis": "docker run --rm -p 6379:6379 --name redis-docker -d redis",
+    "mainnet-spy": "docker run --platform=linux/amd64 -p 7073:7073 --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest spy --nodeKey /node.key --spyRPC \"[::]:7073\" --network /wormhole/mainnet/2 --bootstrap /dns4/wormhole-mainnet-v2-bootstrap.certus.one/udp/8999/quic/p2p/12D3KooWQp644DK27fd3d4Km3jr7gHiuJJ5ZGmy8hH4py7fP4FP7",
+    "stream": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,12 +18,19 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@certusone/wormhole-sdk": "^0.9.23",
     "@certusone/wormhole-sdk-proto-web": "^0.0.6",
     "@certusone/wormhole-spydk": "^0.0.1",
+    "@coral-xyz/anchor": "0.28.1-beta.1",
     "@grpc/grpc-js": "^1.9.0",
     "@improbable-eng/grpc-web-node-http-transport": "^0.15.0",
+    "@project-serum/anchor": "^0.26.0",
+    "@solana/web3.js": "^1.78.4",
     "binary-parser": "^2.2.1",
-    "ethers": "5.7.2",
-    "elliptic": "^6.5.4"
+    "bs58": "^5.0.0",
+    "bullmq": "^4.7.2",
+    "dotenv": "^16.3.1",
+    "elliptic": "^6.5.4",
+    "ethers": "5.7.2"
   }
 }
