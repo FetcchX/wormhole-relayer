@@ -18,4 +18,4 @@ const pendingQueueWorker = new Worker(QueueName.PENDING_QUEUE, async (job) => {
     console.log("finished pending worker")
 })
 
-stream().then()
+stream().then().catch(e => console.log(e))

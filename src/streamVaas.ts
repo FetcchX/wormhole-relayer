@@ -4,6 +4,7 @@ import { addPendingVaa, setupRedis } from "./storage"
 import { parseAndValidate } from "./parseAndValidateVaas"
 
 export const stream = async () => {
+    console.log("streaming")
     const client = createSpyRPCServiceClient("localhost:7073")
     const vaas = await subscribeSignedVAA(client, {
         filters: [
@@ -12,13 +13,19 @@ export const stream = async () => {
                     chainId: 1,
                     emitterAddress: "ec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5"
                 }
+            },
+            {
+                emitterFilter: {
+                    chainId: 1,
+                    emitterAddress: "0xec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5"
+                }
             }
         ]
     })
 
     for await (const vaa of vaas) {
         const parsedVaa = parse(vaa.vaaBytes)
-        console.log("Recevied vaa --> ", parsedVaa.emitterAddress)
+        console.log("Recevied vaa --> ", parsedVaa.emitterAddress, parsedVaa.payload)
 
         if(parsedVaa.signatures[parsedVaa.signatures.length - 1].guardianSetIndex >= 17 && (parsedVaa.payload as any).chain == 5) {
             console.log("Correct VAA")

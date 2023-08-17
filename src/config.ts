@@ -12,10 +12,13 @@ export const SOL_PRIVATE_KEY = process.env.SOL_PRIVATE_KEY as string
 export const publicEthClient = (chainId: number) => {
     const rpcUrls: { [key: number]: string } = {
         2: "https://rpc.ankr.com/eth",
-        5: "https://rpc.ankr.com/polygon"
+        5: "https://polygon-mainnet.g.alchemy.com/v2/oD--2OO92oeHck5VCVI4hKEnYNCQ8F1d"
     }
 
-    return ethers.getDefaultProvider(rpcUrls[chainId])
+    return {
+        rpc: ethers.getDefaultProvider(rpcUrls[chainId]),
+        url: rpcUrls[chainId]
+    }
 }
 
 export const publicSolClient = () => {
